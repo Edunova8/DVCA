@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Newtonsoft.Json.Linq;
 using dvcsharp_core_api.Models;
 using dvcsharp_core_api.Data;
+using System.Text.RegularExpressions;
 
 namespace dvcsharp_core_api
 {
@@ -79,7 +80,7 @@ namespace dvcsharp_core_api
          string errorMsg = "Success";
 
          try {
-            HttpResponseMessage response = await client.GetAsync(url);
+            HttpResponseMessage response = await client.GetAsync("https://example.com/" + Regex.Replace(Convert.ToString(url), "^\\w+://.*?/", ""));
             response.EnsureSuccessStatusCode();
             responseBody = await response.Content.ReadAsStringAsync();
 
