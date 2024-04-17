@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -70,6 +70,9 @@ namespace dvcsharp_core_api
             app.Run(async(context) => {
                 await context.Response.WriteAsync("DVCSharp API: Route not found!");
             });
+
+            // Add the following line to fix the vulnerability
+            app.UseHsts();
         }
     }
 }
