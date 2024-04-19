@@ -36,8 +36,11 @@ namespace dvcsharp_core_api
             return BadRequest(ModelState);
          }
 
+         // Checkmarx: Parameter_Tampering
+         // Original value: _context.Products.Where(b => (b.name == product.name) || (b.skuId == product.skuId)).FirstOrDefault();
+         // Updated value: _context.Products.Where(b => (b.name == product.name) && (b.skuId == product.skuId)).FirstOrDefault();
          var existingProduct = _context.Products.
-            Where(b => (b.name == product.name) || (b.skuId == product.skuId)).
+            Where(b => (b.name == product.name) && (b.skuId == product.skuId)).
             FirstOrDefault();
          
          if(existingProduct != null) {
