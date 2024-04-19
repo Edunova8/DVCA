@@ -51,6 +51,11 @@ namespace dvcsharp_core_api
             Where(b => b.email == resetRequest.email).
             FirstOrDefault();
 
+         if(existingUser == null) {
+            ModelState.AddModelError("key", "Key not found in system");
+            return BadRequest(ModelState);
+         }
+
          existingUser.updatePassword(passwordResetRequest.password);
 
          _context.Users.Update(existingUser);
