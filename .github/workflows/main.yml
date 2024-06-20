@@ -18,4 +18,4 @@ jobs:
           cx_client_id: ${{ secrets.AST }}
           cx_client_secret: ${{ secrets.ASTSECRET }}
           ## additional_params: --apikey ${{ secrets.API_KEY }}
-          ## additional_params: --threshold sast-high=1
+          additional_params: --threshold sast-high=1
